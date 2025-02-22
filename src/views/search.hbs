@@ -1,0 +1,42 @@
+<section class="event-search">
+    <h1 id="title">Search</h1>
+
+    <form class="search-form" method="GET">
+        <input type="text" class="search-event" name="name" placeholder="Search by Name..." value="{{name}}">
+        <select id="type" name="type">
+            <option value="Wildfire" {{#if (setSelectOption type "Wildfire" )}}selected{{/if}}>Wildfire</option>
+            <option value="Flood" {{#if (setSelectOption type "Flood" )}}selected{{/if}}>Flood</option>
+            <option value="Earthquake" {{#if (setSelectOption type "Earthquake" )}}selected{{/if}}>Earthquake</option>
+            <option value="Hurricane" {{#if (setSelectOption type "Hurricane" )}}selected{{/if}}>Hurricane</option>
+            <option value="Drought" {{#if (setSelectOption type "Drought" )}}selected{{/if}}>Drought</option>
+            <option value="Tsunami" {{#if (setSelectOption type "Tsunami" )}}selected{{/if}}>Tsunami</option>
+            <option value="Other" {{#if (setSelectOption type "Other" )}}selected{{/if}}>Other</option>
+        </select>
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+
+    {{#if events.length}}
+    <div class="search-result">
+        <div class="search-list">
+            {{#each events}}
+            <div class="event">
+                <div class="img">
+                    <img src="{{imageUrl}}">
+                </div>
+                <div class="event-info">
+                    <h1>{{name}}</h1>
+                    <p><span>Location: </span>{{location}}</p>
+                    <p><span>Type: </span>{{type}}</p>
+                </div>
+
+                <a href="/catalog/{{_id}}/details" class="btn-details">Details</a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{else}}
+    <div class="no-match">
+        <p>No match was found!</p>
+    </div>
+    {{/if}}
+</section>
